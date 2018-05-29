@@ -8,7 +8,8 @@ public interface BOCreationDAO {
      * This is the method to be used to initialize
      * database resources ie. connection.
   */
-  public void setDataSource(DataSource ds);
+  //public void setDataSource(DataSource ds);
+	public void setDataSource();
   
   /** 
      * This is the method to be used to create
@@ -21,7 +22,7 @@ public interface BOCreationDAO {
      * a record from the BO table corresponding
      * to a passed BO id.
   */
-  public BOCreation getBOCreation(Integer BO_ID);
+ // public BOCreation getBOCreation(Integer BO_ID);
   
   /** 
      * This is the method to be used to list down
@@ -29,7 +30,7 @@ public interface BOCreationDAO {
   */
   public List<BOCreation> listBOs();
   
-  
+  public String createBOs();
   /** 
      * This is the method to be used to update
      * a record into the BO table.

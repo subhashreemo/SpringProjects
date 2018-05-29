@@ -11,5 +11,9 @@
 	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 8.0/lib/servlet-api.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JSTL1.2"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring5"/>
+	<classpathentry kind="lib" path="C:/SAP HANA/Spring jar/jackson-annotations-2.9.5.jar"/>
+	<classpathentry kind="lib" path="C:/SAP HANA/Spring jar/jackson-core-2.9.5.jar"/>
+	<classpathentry kind="lib" path="C:/SAP HANA/Spring jar/jackson-databind-2.9.5.jar"/>
+	<classpathentry kind="lib" path="C:/SAP HANA/jar/json-simple-1.1.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
