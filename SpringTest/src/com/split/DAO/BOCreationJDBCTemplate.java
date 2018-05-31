@@ -46,8 +46,9 @@ public class BOCreationJDBCTemplate implements BOCreationDAO {
 	   public String createBOs()
 	   {
 		   String createSQL="";
+		  
 		  // String boresponse=jdbcTemplateObject.query(createSQL, new BOCreationMapper());
-		  // System.out.println("JDBCTemplate-----bos returned" +boresponse);
+		  //System.out.println("JDBCTemplate-----bos returned" +boresponse);
 		   return "";
 	   }
 }
