@@ -8,9 +8,9 @@
          http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
          http://www.springframework.org/schema/aop 
          http://www.springframework.org/schema/aop/spring-aop.xsd">
-    <import resource="classpath:persistence.xml" />
+   		 <import resource="classpath:persistence.xml" />
     
-    <jaxrs:server address="/rest">
+<!--     <jaxrs:server address="/rest">
         <jaxrs:serviceBeans>
             <ref bean="BOService" />
         </jaxrs:serviceBeans>
@@ -19,9 +19,9 @@
             <bean class="com.split.rest.exceptions.BONotFoundExceptionMapper" />
             <bean class="com.split.rest.filters.StatusCodeFilter" />
         </jaxrs:providers>
-    </jaxrs:server>
+    </jaxrs:server> -->
 
-    <bean id="BOService" class="com.split.rest.services.BOServiceImpl" />
+   <!--  <bean id="BOService" class="com.split.rest.services.BOServiceImpl" /> -->
    
 
 </beans>
