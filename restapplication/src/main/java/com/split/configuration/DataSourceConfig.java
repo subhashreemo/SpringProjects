@@ -1,12 +1,24 @@
 package com.split.configuration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+//import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
+//import org.springframework.orm.jpa.JpaTransactionManager;
+//import org.springframework.orm.jpa.JpaVendorAdapter;
+//import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+//import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
+//import org.springframework.transaction.PlatformTransactionManager;
+//import org.springframework.transaction.TransactionDefinition;
+//import org.springframework.transaction.TransactionStatus;
+//import org.springframework.transaction.annotation.EnableTransactionManagement;
+//import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -17,13 +29,13 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-import org.springframework.transaction.support.DefaultTransactionStatus;
+
 
 
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages="com.split.repositories", entityManagerFactoryRef = "entityManager", transactionManagerRef = "transactionManager")
-@PropertySource("classpath:application.properties")
+//@PropertySource("classpath:application.properties")
 public class DataSourceConfig {
 
 	/*@Autowired
@@ -42,6 +54,9 @@ public class DataSourceConfig {
     public EntityManagerFactory  entityManagerFactory() {
 		System.out.println("Inside userEntityManager -----> ");
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+		Map<String, String> props = new HashMap<>();
+		props.put("eclipselink.weaving","false");
+		em.setJpaPropertyMap(props);
 		em.setDataSource(dataSource());
 		em.setJpaVendorAdapter(jpaVendorAdapter());
 		em.setPackagesToScan("com.split.entity");
@@ -51,9 +66,13 @@ public class DataSourceConfig {
 	
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
+    	System.out.println("Inside JpaVendorAdapter -----> ");
         EclipseLinkJpaVendorAdapter ecliseLinkJpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
+        System.out.println("JpaVendorAdapter 1***********");
         ecliseLinkJpaVendorAdapter.setShowSql(false);
         ecliseLinkJpaVendorAdapter.setGenerateDdl(false);
+       
+        System.out.println("Inside JpaVendorAdapter before return ");
         return ecliseLinkJpaVendorAdapter;
     }
     

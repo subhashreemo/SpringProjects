@@ -13,7 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.eclipse.persistence.annotations.ReadOnly;
+//import org.eclipse.persistence.annotations.ReadOnly;
 
 @Entity
 
