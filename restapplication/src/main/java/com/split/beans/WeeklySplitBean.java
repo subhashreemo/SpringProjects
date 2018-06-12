@@ -6,9 +6,10 @@ public class WeeklySplitBean {
 	private Integer BO_ID;
 	//private String WEEK;
 	//private String WEEK_YEAR;
+	private String REGION;
 	private String CLUSTER;
 	private String COMPONENT;
-	private String REGION;	
+		
 	private double W1_PERCENT;
 	private double W1_QUANTITY;
 	private double W2_PERCENT;

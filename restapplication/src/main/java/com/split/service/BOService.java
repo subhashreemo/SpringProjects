@@ -31,6 +31,9 @@ public class BOService {
 	@Autowired
 	BORepository boRepository;
 	ClusterRepository clusterrepo;
+	//BOHeaderEntity heardentity;
+	//List<BOItemEntity> itemList;
+	//BOItemRepository boitemRepo;
 	// Create new entity
 	// Create new repository 
 	// Create new resource/ bean
@@ -47,11 +50,13 @@ public class BOService {
 
 
 
-	
+	@Autowired
+	BOItemRepository boitemRepo;
 	public void saveBean(BOHeaderBean bean) {
 		
 		BOHeaderEntity heardentity = new BOHeaderEntity ();
 		List<BOItemEntity> itemList = new ArrayList<BOItemEntity>();
+		
 		System.out.println("in BOService");
 		System.out.println("in BOService" +bean.getBO_ID()+"-----------"+bean.getValidFrom()+"!!!!!!!!!!!!!" +bean.getValidTo());
 		
@@ -68,7 +73,7 @@ public class BOService {
 			itemEntity.setQuantity(b.getQuantity());
 			itemEntity.setComponent(b.getComponent());
 			itemEntity.setRegion(b.getRegion());
-			//itemEntity.setBO_ID(bean.getBO_ID());
+			itemEntity.setBO_ID(bean.getBO_ID());
 			
 			System.out.println("ITEM details" +b.getCluster()+ "------" +b.getComponent());
 			//heardentity.getBoItem().add(itemEntity);
@@ -79,7 +84,8 @@ public class BOService {
 			
 		});
 				boRepository.save(heardentity);
-				System.out.println("Created successfully");
+				boitemRepo.save(itemList);
+				System.out.println("Bo Header and Item Table Created successfully");
 		}
 		catch(Exception e){
 			e.printStackTrace();

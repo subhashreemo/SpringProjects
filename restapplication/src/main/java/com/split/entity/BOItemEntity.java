@@ -22,9 +22,9 @@ import javax.persistence.Table;
 public class BOItemEntity {
 	public static final String FIND_ALL = "BOItemEntity.findAll";
 	
-	/*@Id
-	@Column(name = "BO_ID" , insertable=false, updatable=false, unique=true, nullable=true)
-	private Integer BO_ID;*/
+	@Id
+	@Column(name = "BO_ID" , insertable=true, updatable=true, unique=true, nullable=false)
+	private Integer BO_ID;
 	@Id
 	@Column(name = "REGION")
 	private String region;
@@ -36,16 +36,17 @@ public class BOItemEntity {
 	private String component;//component
 	@Column(name = "QUANTITY")
 	private Integer quantity;//quantity
-	@ManyToOne()
+	
+	/*@ManyToOne()
 	//@PrimaryKeyJoinColumn(name="BO_ID")
 	@JoinColumn(name="BO_ID")
-	private BOHeaderEntity boHeaderEntity;
-	/*public Integer getBO_ID() {
+	private BOHeaderEntity boHeaderEntity;*/
+	public Integer getBO_ID() {
 		return BO_ID;
 	}
 	public void setBO_ID(Integer bO_ID) {
 		BO_ID = bO_ID;
-	}*/
+	}
 	public String getRegion() {
 		return region;
 	}
@@ -73,8 +74,8 @@ public class BOItemEntity {
 	public BOItemEntity() {
 		
 	}
-	public BOHeaderEntity getBOHeaderEntity() {
+	/*public BOHeaderEntity getBOHeaderEntity() {
 		return boHeaderEntity;
-	}
+	}*/
 
 }
