@@ -3,11 +3,13 @@ package com.split.configuration;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.annotation.Reference;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 //import org.springframework.orm.jpa.JpaTransactionManager;
@@ -32,6 +34,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 
 
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages="com.split.repositories", entityManagerFactoryRef = "entityManager", transactionManagerRef = "transactionManager")
@@ -41,13 +44,30 @@ public class DataSourceConfig {
 	/*@Autowired
 	private Environment env;*/
 
+	
+	@Resource(name="jdbc/DefaultDB")
 	@Bean
 	public DataSource dataSource() {
+		
 		System.out.println("Inside datasource -----> ");
+		/*String driverClassName = "com.sap.db.jdbc.Driver";
+		String url = "jdbc:sap://localhost:30015";
+		String dbUsername = "P1940225222";
+		String dbPassword = "Apr@2018";*/
+		
+		
+		/*DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName(driverClassName);
+		dataSource.setUrl(url);
+		dataSource.setUsername(dbUsername);
+		dataSource.setPassword(dbPassword);*/
+		
 		final JndiDataSourceLookup dsLookup = new JndiDataSourceLookup();
 		dsLookup.setResourceRef(true);
 		DataSource dataSource = dsLookup.getDataSource("jdbc/DefaultDB");
+		   
 		return dataSource;
+		
 	}
 	
 	@Bean(name = "entityManager")

@@ -1,13 +1,14 @@
 package com.split.configuration;
 
 
+import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
+@Resource (name="jdbc/DefaultDB")
 public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+	 
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
@@ -38,5 +39,6 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 		super.onStartup(servletContext);
 		
 	}
+	
 
 }

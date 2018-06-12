@@ -15,7 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.split.beans.BOHeaderBean;
 import com.split.entity.BOHeaderEntity;
 import com.split.entity.BOItemEntity;
+import com.split.entity.BuyingCenterEntity;
+import com.split.entity.ClusterEntity;
+import com.split.entity.WeeklySplitEntity;
+import com.split.repositories.BOItemRepository;
 import com.split.repositories.BORepository;
+import com.split.repositories.BuyingOrderSplitRepository;
+import com.split.repositories.ClusterRepository;
+import com.split.repositories.WeeklySplitRepository;
 
 @Service
 @Transactional(value="transactionManager")
@@ -23,7 +30,7 @@ public class BOService {
 	
 	@Autowired
 	BORepository boRepository;
-	
+	ClusterRepository clusterrepo;
 	// Create new entity
 	// Create new repository 
 	// Create new resource/ bean
@@ -38,20 +45,7 @@ public class BOService {
 		return entities;
 	}
 
-	/*BOHeaderEntity heardentity = new BOHeaderEntity ();
-	heardentity.setBO_ID(bean.getBO_ID());
-	
-	bean.getIteamBeans().forEach(b -> {
-		BOItemEntity itemEntity = new BOItemEntity();
-		itemEntity.setCluster(b.getCluster());
-		itemEntity.setQuantity(b.getQuantity());
-		itemEntity.setComponent(b.getComponent());
-		itemEntity.setRegion(b.getRegion());
-		heardentity.getBoItem().add(itemEntity);
-	});
-			boRepository.save(heardentity);
-			System.out.println("Created successfully");
-}*/
+
 
 	
 	public void saveBean(BOHeaderBean bean) {
