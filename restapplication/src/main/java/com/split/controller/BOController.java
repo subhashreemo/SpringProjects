@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,10 +62,12 @@ public class BOController {
 	//get BO Items
 	@Autowired
 	BOItemService boitemservice;
-		@RequestMapping(method =  RequestMethod.GET,value="/BOItems", produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(method =  RequestMethod.GET,value="/BOItems/{bo_id}",produces = MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
-		public ResponseEntity<List<BOItemBean>> geBOItem() {
-			List<BOItemEntity> boItemEntities = boitemservice.getAllBOItem();
+		public ResponseEntity<List<BOItemBean>> geBOItem(@PathVariable("bo_id") Integer bo_id) {
+			System.out.println("getAllBOItem bo id is "+bo_id);
+			List<BOItemEntity> boItemEntities = boitemservice.getAllBOItem(bo_id);
+			
 			List<BOItemBean> boBeans = new ArrayList<>(boItemEntities.size());
 			boItemEntities.forEach(b -> {
 				boBeans.add(new BOItemBean(b));
@@ -107,11 +110,11 @@ public class BOController {
 		@ResponseBody
 		public ResponseEntity<List<WeeklySplitBean>> getWeeklySplit() {
 			List<WeeklySplitEntity> boWeekSplitentity = weeksplitservice.getWeekSplit();
-			List<WeeklySplitBean> boSplitBeans = new ArrayList<>(boWeekSplitentity.size());
+			List<WeeklySplitBean> wboSplitBeans = new ArrayList<>(boWeekSplitentity.size());
 			boWeekSplitentity.forEach(b -> {
-				boSplitBeans.add(new WeeklySplitBean(b));
+				wboSplitBeans.add(new WeeklySplitBean(b));
 			});
-			return new ResponseEntity<List<WeeklySplitBean>>(boSplitBeans, HttpStatus.OK);			
+			return new ResponseEntity<List<WeeklySplitBean>>(wboSplitBeans, HttpStatus.OK);			
 		}
 		
 		// Get the Cluster Data

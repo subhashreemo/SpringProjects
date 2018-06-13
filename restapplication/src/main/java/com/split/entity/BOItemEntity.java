@@ -2,14 +2,9 @@ package com.split.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 //import org.eclipse.persistence.annotations.ReadOnly;
@@ -17,12 +12,17 @@ import javax.persistence.Table;
 @Entity
 
 @Table(schema = "\"RB_SCH_TGBL\"", name = "\"tgbl.data.application::TGBL_DDL_APPLICATION.T_TG_BO_ITEM\"")
-@NamedQuery(name = BOItemEntity.FIND_ALL, query = "select s from BOItemEntity s")
+//@NamedQueries({
+//@NamedQuery(name = BOItemEntity.FIND_ALL, query = "select s from BOItemEntity s "),
+@NamedQuery(name= BOItemEntity.findByBoid,query="SELECT s FROM BOItemEntity s WHERE s.BO_ID =:BO_ID")
+
+//})
 
 public class BOItemEntity {
-	public static final String FIND_ALL = "BOItemEntity.findAll";
+	//public static final String FIND_ALL = "BOItemEntity.findAll";
+	public static final String findByBoid = "BOItemEntity.findByBoid";
 	
-	@Id
+	
 	@Column(name = "BO_ID" , insertable=true, updatable=true, unique=true, nullable=false)
 	private Integer BO_ID;
 	@Id
@@ -77,5 +77,6 @@ public class BOItemEntity {
 	/*public BOHeaderEntity getBOHeaderEntity() {
 		return boHeaderEntity;
 	}*/
+	
 
 }

@@ -64,13 +64,16 @@ public class WeeklySplitEntity {
 
 	@Column(name = "W4_QUANTITY")
 	private Double W4_QUANTITY;// W4_Quantity
+	
+	@Column(name = "TOTAL")
+	private Integer TOTAL;
 
 	public Integer getBO_ID() {
 		return BO_ID;
 	}
 
-	public void setBO_ID(Integer bO_ID) {
-		BO_ID = bO_ID;
+	public void setBO_ID(Integer B1) {
+		BO_ID =  B1;
 	}
 
 	
@@ -182,6 +185,14 @@ public Double getW1_QUANTITY() {
 
 	public void setW4_PERCENT(Double w4_PERCENT) {
 		W4_PERCENT = w4_PERCENT;
+	}
+
+	public Integer getTOTAL() {
+		return TOTAL;
+	}
+
+	public void setTOTAL(Integer tOTAL) {
+		TOTAL = tOTAL;
 	}
 
 	

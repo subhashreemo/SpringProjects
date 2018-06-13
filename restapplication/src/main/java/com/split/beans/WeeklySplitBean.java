@@ -1,23 +1,58 @@
 package com.split.beans;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.split.entity.WeeklySplitEntity;
 
 public class WeeklySplitBean {
-	private Integer BO_ID;
+	
 	//private String WEEK;
 	//private String WEEK_YEAR;
+	@JsonProperty("region")
 	private String REGION;
+	
+	@JsonProperty("cluster")
 	private String CLUSTER;
+	
+	/*@JsonProperty("quantity")
+	private double TQUANTITY;*/
+	
+	/*@JsonProperty("centers")
+	private List<CentersBean> center;*/
+	
+	@JsonProperty("component")
 	private String COMPONENT;
+	
+	@JsonProperty("id")
+	private Integer BO_ID;
 		
+	@JsonProperty("Week1_Percent")
 	private double W1_PERCENT;
+	
+	@JsonProperty("Week1_Quantity")
 	private double W1_QUANTITY;
+	
+	@JsonProperty("Week2_Percent")
 	private double W2_PERCENT;
+	
+	@JsonProperty("Week2_Quantity")
 	private double W2_QUANTITY;
+	
+	@JsonProperty("Week3_Percent")
 	private double W3_PERCENT;
+	
+	@JsonProperty("Week3_Quantity")
 	private double W3_QUANTITY;
+	
+	@JsonProperty("Week4_Percent")
 	private double W4_PERCENT;
+	
+	@JsonProperty("Week4_Quantity")
 	private double W4_QUANTITY;
+	
+	@JsonProperty("Total")
+	private Integer TOTAL;
 	
 	// constructor for setting bean- WeeklySplitBean	
 	public WeeklySplitBean(WeeklySplitEntity entity){
@@ -27,6 +62,7 @@ public class WeeklySplitBean {
 		this.CLUSTER= entity.getCLUSTER();
 		this.COMPONENT = entity.getCOMPONENT();
 		this.REGION = entity.getREGION();
+		this.TOTAL=entity.getTOTAL();
 		this.W1_PERCENT = entity.getW1_PERCENT();
 		this.W1_QUANTITY = entity.getW1_QUANTITY();
 		this.W2_PERCENT = entity.getW2_PERCENT();
@@ -141,6 +177,22 @@ public class WeeklySplitBean {
 
 	public void setW4_QUANTITY(double w4_QUANTITY) {
 		W4_QUANTITY = w4_QUANTITY;
+	}
+
+/*	public double getTQUANTITY() {
+		return TQUANTITY;
+	}
+
+	public void setTQUANTITY(double tQUANTITY) {
+		TQUANTITY = tQUANTITY;
+	}*/
+
+	public Integer getTOTAL() {
+		return TOTAL;
+	}
+
+	public void setTOTAL(Integer tOTAL) {
+		TOTAL = tOTAL;
 	}
 	
 

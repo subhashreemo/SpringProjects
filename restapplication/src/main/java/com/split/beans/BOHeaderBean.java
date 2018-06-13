@@ -14,10 +14,10 @@ import com.split.entity.BOHeaderEntity;
 //@JsonPropertyOrder({"BO_ID","vaildFrom","validTo"})
 public class BOHeaderBean {
 	
-	@JsonProperty("BO_ID")
+	@JsonProperty("id")
 	private Integer BO_ID;//BO_ID
 
-	@JsonProperty("vaildFrom")
+	@JsonProperty("validFrom")
 	//@JsonDeserialize(using = DateHandler.class)
 	//@JsonFormat(pattern="dd-MM-yyyy")
 	private Date validFrom;// validFrom

@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.split.entity.BOItemEntity;
 
 public class BOItemBean {
+	
+	@JsonProperty("id")
+	private Integer BO_ID;//BO_ID
+	
 	@JsonProperty("region")
 	private String region;
 	
@@ -18,10 +22,18 @@ public class BOItemBean {
 	public BOItemBean() {
 	}
 	public BOItemBean(BOItemEntity entity) {
+		this.BO_ID=entity.getBO_ID();
 		this.region = entity.getRegion();
 		this.cluster = entity.getCluster();
 		this.component = entity.getComponent();
 		this.quantity = entity.getQuantity();
+	}
+	
+	public Integer getBO_ID() {
+		return BO_ID;
+	}
+	public void setBO_ID(Integer bO_ID) {
+		BO_ID = bO_ID;
 	}
 	public String getRegion() {
 		return region;
