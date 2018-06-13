@@ -21,8 +21,8 @@ public class BOItemService {
 	//get All BO Items
 	
 			public List<BOItemEntity> getAllBOItem(Integer id){
-				BOItemBean boitemBean=new BOItemBean();
-				boitemBean.setBO_ID(id);
+				/*BOItemBean boitemBean=new BOItemBean();
+				boitemBean.setBO_ID(id);*/
 				//Iterable<BOItemEntity> boItemEntities = boitemRepository.findAll();//
 				System.out.println("******BOItemService bo id is "+id);
 				Iterable<BOItemEntity> boItemEntities = boitemRepository.findByBoid(id);

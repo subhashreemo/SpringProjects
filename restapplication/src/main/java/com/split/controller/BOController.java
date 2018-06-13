@@ -52,12 +52,13 @@ public class BOController {
 		return new ResponseEntity<List<BOHeaderBean>>(boBeans, HttpStatus.OK);			
 	}
 	
-	@RequestMapping(method =  RequestMethod.POST,value="/create", consumes= MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+	//@RequestMapping(method =  RequestMethod.POST,value="/create", consumes= MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method =  RequestMethod.POST,value="/create", consumes= MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<String> createBO(@RequestBody BOHeaderBean bean) {
 		System.out.println("createBO request data");
 		boService.saveBean(bean);
-		return new ResponseEntity<String>("BO Created Successfully", HttpStatus.OK);			
+		return new ResponseEntity<String>("Created Successfully",HttpStatus.CREATED);			
 	}
 	//get BO Items
 	@Autowired
@@ -106,10 +107,14 @@ public class BOController {
 		// Get the List of Weekely Split
 		@Autowired
 		WeeklySplitService weeksplitservice;
-		@RequestMapping(method =  RequestMethod.GET,value="/WeeklySplit", produces = MediaType.APPLICATION_JSON_VALUE)
+		//@RequestMapping(method =  RequestMethod.GET,value="/WeeklySplit", produces = MediaType.APPLICATION_JSON_VALUE)
+		@RequestMapping(method =  RequestMethod.GET,value="/WeeklySplit/{bo_id}/{region}/{cluster}",produces = MediaType.APPLICATION_JSON_VALUE)
 		@ResponseBody
-		public ResponseEntity<List<WeeklySplitBean>> getWeeklySplit() {
-			List<WeeklySplitEntity> boWeekSplitentity = weeksplitservice.getWeekSplit();
+		public ResponseEntity<List<WeeklySplitBean>> getWeeklySplit(@PathVariable("bo_id") Integer bo_id,@PathVariable("region") String region,@PathVariable("cluster") String cluster) {
+			System.out.println("getWeeklySplit bo id is "+bo_id);
+			System.out.println("region is "+region);
+			System.out.println("cluster is "+cluster);
+			List<WeeklySplitEntity> boWeekSplitentity = weeksplitservice.getWeekSplit(bo_id,region,cluster);
 			List<WeeklySplitBean> wboSplitBeans = new ArrayList<>(boWeekSplitentity.size());
 			boWeekSplitentity.forEach(b -> {
 				wboSplitBeans.add(new WeeklySplitBean(b));

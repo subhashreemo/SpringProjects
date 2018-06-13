@@ -15,9 +15,13 @@ import org.eclipse.persistence.annotations.ReadOnly;
 @Entity
 @ReadOnly
 @Table(schema = "\"_SYS_BIC\"", name = "\"tgbl.data.transaction.views/CV_TGBL_WEEKLY_SPLIT\"")
-@NamedQuery(name = WeeklySplitEntity.FIND_ALL, query = "select s from WeeklySplitEntity s")
+//@NamedQuery(name = WeeklySplitEntity.FIND_ALL, query = "select s from WeeklySplitEntity s")
+@NamedQuery(name= WeeklySplitEntity.findByBoid,query="SELECT s FROM WeeklySplitEntity s WHERE s.BO_ID =:BO_ID and s.REGION =:REGION and s.CLUSTER =:CLUSTER")
+
+
 public class WeeklySplitEntity {
-	public static final String FIND_ALL = "WeeklySplitEntity.findAll";
+	//public static final String FIND_ALL = "WeeklySplitEntity.findAll";
+	public static final String findByBoid = "WeeklySplitEntity.findByBoid";
 	
 	@Column(name = "BO_ID")
 	private Integer BO_ID;
