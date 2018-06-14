@@ -15,11 +15,6 @@ public class WeeklySplitBean {
 	@JsonProperty("cluster")
 	private String CLUSTER;
 	
-	/*@JsonProperty("quantity")
-	private double TQUANTITY;*/
-	
-	/*@JsonProperty("centers")
-	private List<CentersBean> center;*/
 	
 	@JsonProperty("component")
 	private String COMPONENT;

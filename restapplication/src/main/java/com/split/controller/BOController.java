@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import com.split.beans.BuyingOrderSplitBean;
 import com.split.beans.ClusterBean;
 import com.split.beans.RegionBean;
 import com.split.beans.WeeklySplitBean;
+import com.split.beans.WeeklySplitCreateBean;
 import com.split.entity.BOHeaderEntity;
 import com.split.entity.BOItemEntity;
 import com.split.entity.BuyingCenterEntity;
@@ -32,6 +34,7 @@ import com.split.service.BuyingOrderSplitService;
 import com.split.service.ClusterService;
 import com.split.service.RegionService;
 import com.split.service.WeeklySplitService;
+import com.split.service.WeeklySplitUpdateSevice;
 
 @RestController
 @RequestMapping("/BOService")
@@ -40,6 +43,8 @@ public class BOController {
 		http://localhost:8181/restapplication/rest/BOService/create*/
 	@Autowired
 	BOService boService;
+	/*@Autowired
+	WeeklySplitUpdateSevice weekservice;*/
 	
 	@RequestMapping(method =  RequestMethod.GET,value="/list", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -52,7 +57,7 @@ public class BOController {
 		return new ResponseEntity<List<BOHeaderBean>>(boBeans, HttpStatus.OK);			
 	}
 	
-	//@RequestMapping(method =  RequestMethod.POST,value="/create", consumes= MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+	
 	@RequestMapping(method =  RequestMethod.POST,value="/create", consumes= MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<String> createBO(@RequestBody BOHeaderBean bean) {
@@ -135,6 +140,33 @@ public class BOController {
 			});
 			return new ResponseEntity<List<ClusterBean>>(clusterBeans, HttpStatus.OK);			
 		}
+		
+		//create/update weekly split adjustments ----> Delete all from table need to be done
+		@Autowired
+		WeeklySplitUpdateSevice weekservice;
+		
+		@RequestMapping(method = RequestMethod.POST,value="/WeeklyUpdate", consumes= MediaType.APPLICATION_JSON_VALUE)
+		@ResponseBody
+		public ResponseEntity<String> createWeeklySplit(@RequestBody WeeklySplitCreateBean bean) {
+			System.out.println("Update The weekly split records");
+			weekservice.saveWeeklySplitBean(bean); 
+			return new ResponseEntity<String>("Created Successfully",HttpStatus.CREATED);			
+		}
+		
+		@RequestMapping(method = RequestMethod.POST,value="/test", consumes= MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<String> createWeeklySplit1(@RequestBody WeeklySplitCreateBean bean){
+			return new ResponseEntity<String>("test Successfull",HttpStatus.CREATED);
+		}
+		/*
+		 * @RequestMapping(method =  RequestMethod.POST,value="/create", consumes= MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<String> createBO(@RequestBody BOHeaderBean bean) {
+		System.out.println("createBO request data");
+		boService.saveBean(bean);
+		return new ResponseEntity<String>("Created Successfully",HttpStatus.CREATED);			
+	}
+	*/
+		 
 		
 		
 }
